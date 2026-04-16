@@ -1,22 +1,18 @@
 import { Stack } from 'expo-router';
+import { Image, Pressable } from 'react-native';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { colors } from '../../../utils/color';
 
 export default function ProfileLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
         contentStyle: { backgroundColor: colors.surface.DEFAULT },
-      }}
-    >
+      }}>
       <Stack.Screen
         name="index"
         options={{
-          headerShown: true,
-          headerBackVisible: false,
-          headerTitle: 'Profile',
-          headerStyle: { backgroundColor: colors.surface.DEFAULT },
-          headerTitleStyle: { fontWeight: '700', fontSize: 18 },
+          headerShown: false,
         }}
       />
       <Stack.Screen

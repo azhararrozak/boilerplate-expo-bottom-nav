@@ -6,6 +6,7 @@ import { colors } from '../../utils/color';
 import { useEffect, useMemo, useState } from 'react';
 import { useSubscriptionStore } from '../../store/useSubscriptionStore';
 import { getMonthlySpending, MonthlySpendingData } from '../../services/dashboardService';
+import CustomHeader from '../../components/CustomHeader';
 
 export default function HomeScreen() {
   const { subscriptions, fetchSubscriptions } = useSubscriptionStore();
@@ -105,7 +106,8 @@ export default function HomeScreen() {
   };
 
   return (
-    // <SafeAreaView className="flex-1" edges={['top']}>
+    <View className="flex-1 bg-background">
+      <CustomHeader title="Langgananku" />
       <ScrollView 
         showsVerticalScrollIndicator={false} 
         className="flex-1"
@@ -280,6 +282,6 @@ export default function HomeScreen() {
         </View>
       </View>
     </ScrollView>
-    // </SafeAreaView>
+    </View>
   );
 }

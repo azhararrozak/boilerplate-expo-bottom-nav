@@ -24,31 +24,12 @@ export default function TabLayout() {
           fontSize: 12,
           fontWeight: '600',
         },
-        headerStyle: {
-          backgroundColor: colors.surface.DEFAULT,
-        },
-        headerTitleStyle: {
-          fontWeight: '700',
-          fontSize: 18,
-        },
+        headerShown: false,
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          headerTitle: 'Langgananku',
-          headerLeft: () => (
-            <Image
-              source={require('../../assets/icon.png')}
-              style={{ width: 28, height: 28, marginLeft: 16, borderRadius: 6 }}
-              resizeMode="contain"
-            />
-          ),
-          headerRight: () => (
-            <Pressable style={{ marginRight: 16 }}>
-              <MaterialIcons name="notifications-none" size={24} color={colors.outline.DEFAULT} />
-            </Pressable>
-          ),
           tabBarIcon: ({ color, size }) => <MaterialIcons name="home" size={size} color={color} />,
         }}
       />
@@ -75,6 +56,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="person" size={size} color={color} />
           ),

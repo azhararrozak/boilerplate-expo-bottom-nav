@@ -1,64 +1,143 @@
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useAuthStore } from '../../store/useAuthStore';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useRouter } from 'expo-router';
+import { useAuthStore } from '../../../store/useAuthStore';
+import { colors } from '../../../utils/color';
+import CustomHeader from '../../../components/CustomHeader';
 
 export default function ProfileScreen() {
   const { user, logout } = useAuthStore();
+  const router = useRouter();
 
   const handleLogout = () => {
-    Alert.alert(
-      'Konfirmasi Logout',
-      'Apakah Anda yakin ingin keluar dari akun?',
-      [
-        { text: 'Batal', style: 'cancel' },
-        { 
-          text: 'Keluar', 
-          style: 'destructive', 
-          onPress: () => logout()
-        },
-      ]
-    );
+    Alert.alert('Konfirmasi Logout', 'Apakah Anda yakin ingin keluar dari akun?', [
+      { text: 'Batal', style: 'cancel' },
+      {
+        text: 'Keluar',
+        style: 'destructive',
+        onPress: () => logout(),
+      },
+    ]);
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
-      <View className="flex-1 p-6">
-        <Text className="mb-6 text-3xl font-bold text-gray-900">Profile</Text>
-
-        <View className="items-center mb-8 rounded-3xl bg-white p-8 shadow-sm border border-gray-100">
-          <View className="mb-4 h-24 w-24 items-center justify-center rounded-full bg-blue-100">
-            <Text className="text-4xl font-bold text-blue-600">
-              {user?.username?.charAt(0).toUpperCase() || 'U'}
+    <View className="flex-1 bg-gray-50">
+      <CustomHeader title="Langgananku" />
+      <ScrollView className="flex-1 px-4 pt-4" showsVerticalScrollIndicator={false}>
+        <View className="flex-col gap-2"></View>
+        <Text className="font-manrope text-sm font-bold uppercase tracking-widest text-primary">
+          Active Account
+        </Text>
+        <Text className="font-manrope text-on-surface text-4xl font-extrabold capitalize tracking-tight">
+          {user?.username || 'Username'}
+        </Text>
+        <Text className="font-body text-on-surface-variant">
+          {user?.email || 'email@example.com'}
+        </Text>
+        <View className="mt-8 flex-col gap-8 pb-10">
+          {/* Account Settings */}
+          <View>
+            <Text className="font-manrope mb-4 pl-1 text-lg font-bold text-indigo-900">
+              Account Settings
             </Text>
+            <View className="overflow-hidden rounded-xl bg-surface-container-low">
+              <TouchableOpacity className="w-full flex-row items-center justify-between p-5">
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons name="person" size={24} color={colors.primary.DEFAULT} />
+                  <Text className="text-on-surface font-medium">Edit Profile</Text>
+                </View>
+                <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
+              </TouchableOpacity>
+              <View className="mx-5 h-[1px] bg-outline-variant/20" />
+              <TouchableOpacity className="w-full flex-row items-center justify-between p-5">
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons name="lock" size={24} color={colors.primary.DEFAULT} />
+                  <Text className="text-on-surface font-medium">Change Password</Text>
+                </View>
+                <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
+              </TouchableOpacity>
+            </View>
           </View>
-          
-          <Text className="mb-1 text-2xl font-bold text-gray-900">
-            {user?.username || 'Username'}
-          </Text>
-          <Text className="mb-2 text-base text-gray-500">
-            {user?.email || 'email@example.com'}
-          </Text>
 
-          {/* Menampilkan level role dari auth (misal: "User") */}
-          <View className="flex-row items-center rounded-full bg-blue-50 px-4 py-2 mt-2">
-            <Feather name="shield" size={14} color="#2563EB" />
-            <Text className="ml-2 text-sm font-medium text-blue-700 capitalize">
-              {user?.roles?.[0]?.replace('ROLE_', '')?.toLowerCase() || 'User'}
+          {/* Subscription Preferences */}
+          <View>
+            <Text className="font-manrope mb-4 pl-1 text-lg font-bold text-indigo-900">
+              Subscription Preferences
+            </Text>
+            <View className="overflow-hidden rounded-xl bg-surface-container-low">
+              <TouchableOpacity className="w-full flex-row items-center justify-between p-5">
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons name="payments" size={24} color={colors.primary.DEFAULT} />
+                  <Text className="text-on-surface font-medium">Default Currency</Text>
+                </View>
+                <View className="flex-row items-center gap-2">
+                  <Text className="text-sm text-on-surface-variant">USD ($)</Text>
+                  <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
+                </View>
+              </TouchableOpacity>
+              <View className="mx-5 h-[1px] bg-outline-variant/20" />
+              <TouchableOpacity className="w-full flex-row items-center justify-between p-5">
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons
+                    name="notifications-active"
+                    size={24}
+                    color={colors.primary.DEFAULT}
+                  />
+                  <Text className="text-on-surface font-medium">Notification Settings</Text>
+                </View>
+                <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* App Info & Support */}
+          <View>
+            <Text className="font-manrope mb-4 pl-1 text-lg font-bold text-indigo-900">
+              App Info
+            </Text>
+            <View className="overflow-hidden rounded-xl bg-surface-container-low">
+              <TouchableOpacity 
+                className="w-full flex-row items-center justify-between p-5"
+                onPress={() => router.push('/(tabs)/profile/about')}
+              >
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons name="info" size={24} color={colors.primary.DEFAULT} />
+                  <Text className="text-on-surface font-medium">About Langgananku</Text>
+                </View>
+                <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
+              </TouchableOpacity>
+              <View className="mx-5 h-[1px] bg-outline-variant/20" />
+              <TouchableOpacity 
+                className="w-full flex-row items-center justify-between p-5"
+                onPress={() => router.push('/(tabs)/profile/privacypolicy')}
+              >
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons name="verified-user" size={24} color={colors.primary.DEFAULT} />
+                  <Text className="text-on-surface font-medium">Privacy Policy</Text>
+                </View>
+                <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
+              </TouchableOpacity>
+              <View className="mx-5 h-[1px] bg-outline-variant/20" />
+              <TouchableOpacity
+                className="w-full flex-row items-center justify-between bg-error-container/10 p-5"
+                onPress={handleLogout}>
+                <View className="flex-row items-center gap-4">
+                  <MaterialIcons name="logout" size={24} color={colors.error.DEFAULT} />
+                  <Text className="font-semibold text-error">Logout</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* App Version */}
+          <View className="flex-col items-center">
+            <Text className="font-label text-sm capitalize tracking-widest text-outline">
+              Version 1.0.0 (Build 1)
             </Text>
           </View>
         </View>
-
-        <TouchableOpacity 
-          onPress={handleLogout}
-          className="flex-row items-center justify-center rounded-2xl bg-red-50 py-4 px-6 mt-4 opacity-90 active:opacity-100"
-        >
-          <Feather name="log-out" size={20} color="#EF4444" />
-          <Text className="ml-2 text-lg font-semibold text-red-500">
-            Keluar dari Akun
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+      </ScrollView>
+    </View>
   );
 }

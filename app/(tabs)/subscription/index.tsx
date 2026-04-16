@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router, useFocusEffect } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from '../../../utils/color';
+import CustomHeader from '../../../components/CustomHeader';
 import { useSubscriptionStore } from '../../../store/useSubscriptionStore';
 
 const getCardStyle = (name: string): readonly [string, string, ...string[]] => {
@@ -45,7 +46,9 @@ const SubscriptionScreen = () => {
   const utilitySubs = subscriptions.filter(sub => !['Hiburan', 'Musik'].includes(sub.category || ''));
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <View className="flex-1 bg-background">
+      <CustomHeader title="Langgananku" />
+      <ScrollView showsVerticalScrollIndicator={false}>
       <View className="w-full flex-col p-4">
         <Text className="mb-2 font-label text-sm uppercase tracking-widest text-on-surface-variant">
           Portofolio Overview
@@ -190,6 +193,7 @@ const SubscriptionScreen = () => {
         </>
       )}
     </ScrollView>
+    </View>
   );
 };
 
