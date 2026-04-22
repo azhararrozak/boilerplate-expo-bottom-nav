@@ -2,6 +2,7 @@ import { View, Text, Image, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { colors } from '../utils/color';
+import { useRouter } from 'expo-router';
 
 interface CustomHeaderProps {
   title?: string;
@@ -9,6 +10,7 @@ interface CustomHeaderProps {
 
 export default function CustomHeader({ title = 'Langgananku' }: CustomHeaderProps) {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   
   return (
     <View 
@@ -28,7 +30,9 @@ export default function CustomHeader({ title = 'Langgananku' }: CustomHeaderProp
         <Text style={{ fontWeight: '700', fontSize: 18, color: colors.primary.container, marginLeft: 4 }}>{title}</Text>
       </View>
 
-      <Pressable>
+      <Pressable
+        onPress={() => router.push('/(tabs)/profile/notification')}
+      >
         <MaterialIcons name="notifications-none" size={24} color={colors.outline.DEFAULT} />
       </Pressable>
     </View>

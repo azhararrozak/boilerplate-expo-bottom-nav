@@ -77,7 +77,9 @@ export default function ProfileScreen() {
                 </View>
               </TouchableOpacity>
               <View className="mx-5 h-[1px] bg-outline-variant/20" />
-              <TouchableOpacity className="w-full flex-row items-center justify-between p-5">
+              <TouchableOpacity
+                onPress={() => router.push('/(tabs)/profile/notification')}
+                className="w-full flex-row items-center justify-between p-5">
                 <View className="flex-row items-center gap-4">
                   <MaterialIcons
                     name="notifications-active"
@@ -97,10 +99,9 @@ export default function ProfileScreen() {
               App Info
             </Text>
             <View className="overflow-hidden rounded-xl bg-surface-container-low">
-              <TouchableOpacity 
+              <TouchableOpacity
                 className="w-full flex-row items-center justify-between p-5"
-                onPress={() => router.push('/(tabs)/profile/about')}
-              >
+                onPress={() => router.push('/(tabs)/profile/about')}>
                 <View className="flex-row items-center gap-4">
                   <MaterialIcons name="info" size={24} color={colors.primary.DEFAULT} />
                   <Text className="text-on-surface font-medium">About Langgananku</Text>
@@ -108,10 +109,9 @@ export default function ProfileScreen() {
                 <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
               </TouchableOpacity>
               <View className="mx-5 h-[1px] bg-outline-variant/20" />
-              <TouchableOpacity 
+              <TouchableOpacity
                 className="w-full flex-row items-center justify-between p-5"
-                onPress={() => router.push('/(tabs)/profile/privacypolicy')}
-              >
+                onPress={() => router.push('/(tabs)/profile/privacypolicy')}>
                 <View className="flex-row items-center gap-4">
                   <MaterialIcons name="verified-user" size={24} color={colors.primary.DEFAULT} />
                   <Text className="text-on-surface font-medium">Privacy Policy</Text>

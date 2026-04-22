@@ -16,6 +16,15 @@ export default function ProfileLayout() {
         }}
       />
       <Stack.Screen
+        name="notification"
+        options={{
+          headerShown: true,
+          headerTitle: 'Pengaturan Notifikasi',
+          headerStyle: { backgroundColor: colors.surface.DEFAULT },
+          headerTitleStyle: { fontWeight: '700', fontSize: 18 },
+        }}
+      />
+      <Stack.Screen
         name="about"
         options={{
           headerShown: true,
