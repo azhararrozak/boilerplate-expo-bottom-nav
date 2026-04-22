@@ -141,9 +141,9 @@ const SubscriptionScreen = () => {
                 Utilities & Services
               </Text>
 
-              <View className="flex-row flex-wrap gap-4">
+              <View className="flex-row flex-wrap gap-4 justify-between">
                 {utilitySubs.map((sub) => (
-                  <Pressable key={sub.id} onPress={() => router.push(`/subscription/${sub.id}`)} className="min-w-[46%] flex-1">
+                  <Pressable key={sub.id} onPress={() => router.push(`/subscription/${sub.id}`)} className="w-[48%]">
                     <View className="flex-1 rounded-2xl bg-white px-4 pb-6 pt-6 shadow-md border border-gray-50">
                       <View className="mb-4 items-center">
                         <MaterialIcons name={getUtilityIcon(sub.name)} size={28} color={colors.outline.DEFAULT} />

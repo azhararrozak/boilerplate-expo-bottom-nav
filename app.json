@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "my-expo-app",
-    "slug": "my-expo-app",
-    "scheme": "myexpoapp",
+    "name": "Langgananku",
+    "slug": "langgananku",
+    "scheme": "langgananku",
     "version": "1.0.0",
     "web": {
       "favicon": "./assets/favicon.png",
@@ -28,14 +28,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.azhara.myexpoapp"
+      "bundleIdentifier": "com.azhara.langgananku"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.azhara.myexpoapp"
+      "package": "com.azhara.langgananku"
     }
   }
 }

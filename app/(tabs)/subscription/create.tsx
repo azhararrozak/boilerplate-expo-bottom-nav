@@ -6,6 +6,7 @@ import { router } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from '../../../utils/color';
 import { useSubscriptionStore } from '../../../store/useSubscriptionStore';
+import { scheduleSubscriptionReminder } from '../../../utils/notifications';
 
 const categories = ['Hiburan', 'Musik', 'Kesehatan & Olahraga', 'Cloud & Storage', 'Produktivitas'];
 
@@ -46,6 +47,15 @@ const CreateSubscriptionScreen = () => {
         category: selectedCategory,
         notifyBefore: reminderEnabled ? 2 : 0, // as configured in UI (2 days before)
       });
+
+      // Schedule notification if reminder is enabled
+      if (reminderEnabled) {
+        try {
+          await scheduleSubscriptionReminder(name, billingDate.toISOString(), numericPrice);
+        } catch (error) {
+          console.log('Gagal menjadwalkan notifikasi:', error);
+        }
+      }
 
       Alert.alert('Sukses', 'Langganan berhasil ditambahkan!', [
         { text: 'OK', onPress: () => router.back() }

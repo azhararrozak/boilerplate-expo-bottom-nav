@@ -19,13 +19,13 @@ export default function CustomHeader({ title = 'Langgananku' }: CustomHeaderProp
       }} 
       className="flex-row items-center justify-between px-4 border-b border-gray-100 relative"
     >
-      <View className="flex-row items-center gap-3">
+      <View className="flex-row items-center">
         <Image 
           source={require('../assets/icon.png')} 
-          style={{ width: 28, height: 28, borderRadius: 6 }}
+          style={{ width: 35, height: 35, borderRadius: 6 }}
           resizeMode="contain"
         />
-        <Text style={{ fontWeight: '700', fontSize: 18, color: '#191c1e' }}>{title}</Text>
+        <Text style={{ fontWeight: '700', fontSize: 18, color: colors.primary.container, marginLeft: 4 }}>{title}</Text>
       </View>
 
       <Pressable>

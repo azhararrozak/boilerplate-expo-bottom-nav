@@ -72,7 +72,7 @@ export default function ProfileScreen() {
                   <Text className="text-on-surface font-medium">Default Currency</Text>
                 </View>
                 <View className="flex-row items-center gap-2">
-                  <Text className="text-sm text-on-surface-variant">USD ($)</Text>
+                  <Text className="text-sm text-on-surface-variant">IDR (Rp)</Text>
                   <MaterialIcons name="chevron-right" size={24} color={colors.outline.DEFAULT} />
                 </View>
               </TouchableOpacity>

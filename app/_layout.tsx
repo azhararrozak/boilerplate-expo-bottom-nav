@@ -7,6 +7,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { useAuthStore } from '../store/useAuthStore';
 import { colors } from '../utils/color';
+import { requestNotificationPermissions } from '../utils/notifications';
 
 import '../global.css';
 
@@ -26,6 +27,11 @@ export default function RootLayout() {
       NavigationBar.setVisibilityAsync('hidden');
     }
   }, [segments]);
+
+  useEffect(() => {
+    // Request notification permissions
+    requestNotificationPermissions();
+  }, []);
 
   useEffect(() => {
     // Wait until navigation state is fully mounted
